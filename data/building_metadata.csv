@@ -1,0 +1,11 @@
+building_id,site_id,primary_space_usage,sqm,year_built,timezone
+Office_Alicia,Bear,Office,8500,1998,US/Eastern
+Office_Bob,Bear,Office,12400,2005,US/Eastern
+Education_Claire,Bear,Education,5200,1982,US/Eastern
+Education_Daniel,Fox,Education,7100,2012,US/Pacific
+Lodging_Elena,Fox,Lodging,9800,2016,US/Pacific
+Office_Frank,Fox,Office,14200,2001,US/Pacific
+Laboratory_Grace,Eagle,Laboratory,6300,2010,US/Central
+Education_Henry,Eagle,Education,8900,1974,US/Central
+Lodging_Ivy,Eagle,Lodging,4500,1995,US/Central
+Office_Jack,Eagle,Office,11000,2019,US/Central

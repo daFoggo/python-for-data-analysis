@@ -1,0 +1,24 @@
+[project]
+name = "python-for-data-science"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "daFoggo", email = "ntgiang141105@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=7.4.0",
+    "jupyterlab>=4.6.4",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
+    "seaborn>=0.13.2",
+]
+
+[project.scripts]
+python-for-data-science = "python_for_data_science:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"

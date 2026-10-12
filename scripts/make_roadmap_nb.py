@@ -1,0 +1,118 @@
+import json
+import os
+
+def create_roadmap_notebook():
+    cells = [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Python for Data Analysis: Applied Engineering Edition\n",
+                "## Course Orientation & 14-Session Core Roadmap\n",
+                "*Focused on Building Sensor Telemetry, IoT Time Series & High-Performance Data Wrangling*\n",
+                "*Based on the Principles of Python for Data Analysis (3E) by Wes McKinney*\n",
+                "\n",
+                "---\n",
+                "\n",
+                "## Welcome to the Curriculum\n",
+                "\n",
+                "This entire curriculum is designed as a **self-contained interactive book**. Every session lives as an executable notebook where theory, worked code examples, practical hands-on exercises, and real-world domain challenges flow together naturally.\n",
+                "\n",
+                "### Our Focus: Real-World Sensor Telemetry & Building Data Genome 2 (BDG2)\n",
+                "Instead of analyzing generic toy datasets (like flower petals or restaurant tips), we ground our work in **realistic physical systems** and open building datasets:\n",
+                "* Multi-channel HVAC temperature and air-flow streams.\n",
+                "* Electrical sub-meter power profiles (kW and MW).\n",
+                "* High-frequency time series with missing packets, calibration drift, and demand spikes.\n",
+                "\n",
+                "### The Modern Engineering Stack\n",
+                "We use the verified modern PyData toolchain:\n",
+                "* **Python 3.12+** & **uv** for ultra-fast, zero-friction package execution.\n",
+                "* **NumPy 2.x** for contiguous C-memory vectorization.\n",
+                "* **pandas 3.0+** using modern API standards (like `DataFrame.map` instead of deprecated methods).\n",
+                "\n",
+                "---\n",
+                "\n",
+                "## The 14-Session Core Curriculum (Plan A)\n",
+                "\n",
+                "The core track is organized into 4 cohesive engineering modules (~21 hours total, designed for ~4.5 weeks at 3 sessions/week):\n",
+                "\n",
+                "### Module 1: Ingestion & Vectorized Signals (NumPy)\n",
+                "* 🟢 **[Session 01: Modern Environment & Fast Execution](./session_01_environment_ipython.ipynb)**  \n",
+                "  *Setting up with `uv`, measuring the memory reality of Python lists vs. C-buffers, the Execute-Explore workflow, and live introspection.*\n",
+                "* 🟢 **[Session 02: Multi-Channel Signals & NumPy ndarrays](./session_02_numpy_arrays.ipynb)**  \n",
+                "  *Matrix dimensions `(samples x channels)`, cutting RAM by 50% with `float32`, and calibrating thousands of sensors simultaneously via Broadcasting.*\n",
+                "* ⏳ **[Session 03: Boolean Masking, Views vs Copies & Signal Filtering](./session_03_numpy_filtering.ipynb)**  \n",
+                "  *Isolating sensor glitches, the critical difference between views and copies in slicing, and conditional clamping with `np.where`.*\n",
+                "\n",
+                "### Module 2: Tabular Telemetry & Columnar Storage (pandas)\n",
+                "* ⏳ **[Session 04: pandas Series & DataFrame Fundamentals](./session_04_pandas_basics.ipynb)**  \n",
+                "  *Representing single sensor streams and building arrays, automatic index alignment across unsynchronized clocks.*\n",
+                "* ⏳ **[Session 05: Precise Indexing & Element Mapping](./session_05_pandas_indexing.ipynb)**  \n",
+                "  *Subsetting sensor channels with `loc`/`iloc`, applying non-linear conversions with modern `df.map`.*\n",
+                "* ⏳ **[Session 06: Reading High-Volume Logs in Chunks & Parquet Storage](./session_06_data_loading_chunks.ipynb)**  \n",
+                "  *Streaming large CSV exports with `chunksize`, exporting to compressed Parquet with `to_parquet()`, and measuring disk footprint.*\n",
+                "\n",
+                "### Module 3: Cleaning & Wrangling Sensor Streams\n",
+                "* ⏳ **[Session 07: Handling Missing Telemetry & Dropouts](./session_07_missing_telemetry.ipynb)**  \n",
+                "  *Detecting dropped network packets, forward-filling (`ffill`) dead sensor channels, and interpolation.*\n",
+                "* ⏳ **[Session 08: Outlier Detection & Signal Transformations](./session_08_outliers_transforms.ipynb)**  \n",
+                "  *Deduplicating timestamps, clipping physical sensor limits, and bucketing continuous values with `cut`/`qcut`.*\n",
+                "* ⏳ **[Session 09: Merging Telemetry with Building Metadata](./session_09_merging_metadata.ipynb)**  \n",
+                "  *Joining sensor time series with asset/room tables using relational merges (`merge`, `join`).*\n",
+                "* ⏳ **[Session 10: Pivoting & Reshaping Telemetry Grids](./session_10_pivoting_telemetry.ipynb)**  \n",
+                "  *Transforming narrow event streams into wide sensor matrices (`pivot`, `pivot_table`, `melt`).*\n",
+                "\n",
+                "### Module 4: Deep Time Series & Capstone Analysis (3 Sessions)\n",
+                "* ⏳ **[Session 11: DatetimeIndex, Frequency & Slicing](./session_11_timeseries_indexing.ipynb)**  \n",
+                "  *Parsing sensor timestamps with `pd.to_datetime`, timezone handling, date range generation, slicing exact time windows.*\n",
+                "* ⏳ **[Session 12: Resampling & Frequency Conversion](./session_12_timeseries_resampling.ipynb)**  \n",
+                "  *Downsampling high-frequency raw telemetry (10s/1m) to 15-minute energy averages (`resample('15min')`), upsampling with interpolation.*\n",
+                "* ⏳ **[Session 13: Rolling Windows, Shift/Lag & Anomaly Detection](./session_13_timeseries_rolling_anomalies.ipynb)**  \n",
+                "  *Moving averages (`rolling(window=60).mean()`), lag features with `.shift()`, detecting sudden electrical spikes and sensor drift.*\n",
+                "* ⏳ **[Session 14: Capstone: End-to-End Building Energy Audit](./session_14_capstone_energy_audit.ipynb)**  \n",
+                "  *Full pipeline on Building Data Genome 2: raw telemetry ingestion ➔ cleaning ➔ resampling ➔ anomaly flags ➔ peak load summary report.*\n",
+                "\n",
+                "---\n",
+                "\n",
+                "## Interactive Progress Tracker\n",
+                "Run the cell below (`Shift + Enter`) to view your live course completion status:"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# Live Curriculum Progress Tracker\n",
+                "completed_sessions = [1, 2]  # Update this list as you complete sessions!\n",
+                "total_sessions = 14\n",
+                "\n",
+                "progress_pct = (len(completed_sessions) / total_sessions) * 100\n",
+                "bar_length = 30\n",
+                "filled_length = int(bar_length * len(completed_sessions) // total_sessions)\n",
+                "bar = '█' * filled_length + '░' * (bar_length - filled_length)\n",
+                "\n",
+                "print(f\"\\nCurriculum Progress: [{bar}] {progress_pct:.1f}% ({len(completed_sessions)}/{total_sessions} Sessions Completed)\")\n",
+                "print(\"\\nReady to begin? Open Session 01 to start your learning journey!\")\n"
+            ]
+        }
+    ]
+
+    notebook = {
+        "cells": cells,
+        "metadata": {
+            "language_info": {"name": "python"},
+            "kernelspec": {"name": "python3", "display_name": "Python 3"}
+        },
+        "nbformat": 4,
+        "nbformat_minor": 2
+    }
+
+    os.makedirs("notebooks", exist_ok=True)
+    with open("notebooks/00_roadmap_and_orientation.ipynb", "w", encoding="utf-8") as f:
+        json.dump(notebook, f, indent=2, ensure_ascii=False)
+    print("Updated 00_roadmap_and_orientation.ipynb successfully!")
+
+if __name__ == '__main__':
+    create_roadmap_notebook()
